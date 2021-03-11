@@ -1,0 +1,7 @@
+/venv
+.idea
+/backup
+/docs
+webviz/dbcreds.cnf
+docs/ppt
+

@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - Web Data Visualization</title>
+        <link rel="stylesheet" id="ample-style-css" href="{% static 'style.css' %}" media="all">
+    </head>
+    <body class="wide">
+        <div id="page" class="hfeed site">
+            <header>
+                <div class="header">
+                    <div class="main-head-wrap inner-wrap clearfix">
+                        <div id="header-logo-image">
+                            <a href="/">
+                                <img src="{% static 'logo2.png' %}" alt="Web Data Visualization">
+                            </a>
+                        </div>
+                        <div id="header-text" class="">
+                            <h1 id="site-title">
+                                <a href="/" title="Web Data Visualization" rel="home">Web Data Visualization</a>
+                            </h1>
+                            <p>Explore your data with web visualization.</p>
+                        </div>
+                    </div>
+                    <img src="{% static 'header.jpg' %}" alt="Web Data Visualization" style="width:1500px;height:400px">
+                </div>
+            </header>
+            <div class="main-wrapper">
+                <div class="single-page clearfix">
+                    <div class="inner-wrap">
+                        <!--<p>conditions in companion animals, including dogs, cats, birds, reptiles, rodents, and fish. We apply the latest healthcare technology, along with the wisdom garnered in the centuries old tradition of veterinary medicine, to find the safest and most effective treatments and cures, while maintaining a caring relationship with our patients and their guardians.</p>-->
+                        <hr>
+                        <div>
+                        <!-- Insert content here-->
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<footer id="colophon">-->
+                <!--&lt;!&ndash;<div class="inner-wrap">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Wisdom Pet Medicine is a fictitious brand created by Lynda.com, solely for the purpose of training. All products and people associated with Wisdom Pet Medicine are also fictitious. Any resemblance to real brands, products, or people is purely coincidental. Please see your veterinarian for all matters related to your pet's health.&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</footer>-->
+        </div>
+        <!-- Insert javascript (added by jg)-->
+        <script src="{% static 'main.js' %}"></script>
+    </body>
+</html>

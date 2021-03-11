@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h3>{{ movie.title|capfirst }}</h3>
+    <p>Popularity: {{ movie.popularity }}</p>
+    <p>{{ movie.description }}</p>
+</div>
+{% endblock %}
+

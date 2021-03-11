@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    {% for mov in movies %}
+        <div class="movietitle">
+            <a href="{% url 'movie_detail' mov.id %}">
+                <h3>{{ mov.title|capfirst }}</h3>
+            </a>
+            <p>Popularity: {{ mov.popularity }}</p>
+            <P class="hidden">Description: {{ mov.description }}</P>
+
+        </div>
+    {% endfor %}
+</div>
+<div>
+{% autoescape off %}
+  {{ plot_div }}
+  {% endautoescape %}
+</div>
+{% endblock %}
+
