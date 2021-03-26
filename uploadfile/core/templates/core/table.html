@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+    <h3>CSV Data</h3>
+    <br>
+    <table class="table">
+        {{ data_html|safe }}
+    </table>
+
+{% endblock %}
