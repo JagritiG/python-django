@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+
+<div class="container">
+    {{ chart_type }}
+    {{ x_var }}
+    {{ y_bar }}
+    {% if plot_div %}
+        {% autoescape off %}
+          {{ plot_div }}
+        {% endautoescape %}
+    {% else %}
+        <a href="{% url 'upload' %}">Please upload file</a>
+    {% endif %}
+    <br>
+    <a href="{% url 'upload' %}">Upload another file</a>
+</div>
+{% endblock %}

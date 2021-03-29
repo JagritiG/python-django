@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+
+    <div class="container">
+    <h3>Upload File</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="myFile">
+        <button type="submit" style="border: none; background-color: green; color: white;">Upload file</button>
+    </form>
+    {% if url %}
+        <p>Uploaded File: <a href="{{ url }}">{{ url }}</a></p>
+    {% endif %}
+
+    <br>
+    {% if html_table %}
+        <div style="overflow: auto; height: 400px;">
+        {{ html_table|safe }}
+        <!--{% autoescape off %}{{ html_table }}{% endautoescape %}-->
+        </div>
+    {% endif %}
+
+    <br>
+    <div style="float: right;">
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'upload' %}" style="text-decoration: none; color: white;">Reset</a>
+    </button>
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'home' %}" style="text-decoration: none; color: white;">Back</a>
+    </button>
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'data_process' %}" style="text-decoration: none; color: white;">Next</a>
+    </button>
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'data_process' %}" style="text-decoration: none; color: white;">Data Process</a>
+    </button>
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'data_visualize' %}" style="text-decoration: none; color: white;">Visualization</a>
+    </button>
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'dashboard' %}" style="text-decoration: none; color: white;">Dashboard</a>
+    </button>
+    </div>
+
+    </div>
+
+{% endblock %}

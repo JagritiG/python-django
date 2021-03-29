@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+
+<div class="container">
+    {% if process %}
+        <h3>{{ process }} your data</h3>
+        <a href="{% url 'upload' %}">Back</a>
+    {% else %}
+        <a href="{% url 'upload' %}">Please upload file</a>
+    {% endif %}
+</div>
+{% endblock %}

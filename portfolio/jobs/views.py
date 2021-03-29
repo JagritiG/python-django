@@ -5,7 +5,7 @@ from .models import Job
 # Create your views here.
 def home(request):
     jobs = Job.objects
-    return render(request, 'jobs/home.html', {'jobs': jobs})
+    return render(request, 'jobs/index_ori.html', {'jobs': jobs})
 
 
 def detail(request, job_id):

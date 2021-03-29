@@ -23,9 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home.as_view(), name='home'),
     path('upload/', views.upload, name='upload'),
+    path('csvs/<int:pk>/', views.delete_csv, name='delete_csv'),
     path('books/', views.book_list, name='book_list'),
     path('books/upload/', views.upload_book, name='upload_book'),
     path('books/<int:pk>/', views.delete_book, name='delete_book'),
+    path('process/', views.data_process, name='data_process'),
+    path('visualization/', views.data_visualize, name='data_visualize'),
+    path('chart/', views.chart, name='chart'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
 
 if settings.DEBUG:

@@ -1,30 +1,78 @@
 {% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
 {% block 'body' %}
+{% load widget_tweaks %}
 
     <div class="container">
     <h3>Upload File</h3>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="myFile">
-        <button type="submit" style="border: none; background-color: green; color: white;">Upload file</button>
+        {{ form|crispy }}
+        <!--<input type="file" name="myFile">-->
+        <br>
+        <button class="btn btn-primary btn-sm" type="submit" style="border: none; background-color: green; color: white;">Upload file</button>
     </form>
     {% if url %}
         <p>Uploaded File: <a href="{{ url }}">{{ url }}</a></p>
     {% endif %}
 
     <br>
-    <button style="border: none; background-color: green;">
-        <a href="{% url 'upload' %}" style="text-decoration: none; color: white;">Reset</a>
-    </button>
+    {% if html_table %}
+        <div style="overflow: auto; height: 400px;">
+        {{ html_table|safe }}
+        </div>
+    {% endif %}
+    <br>
+    {% if get_objects %}
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Download</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ get_objects.title }}</td>
+                <td>
+                    <a href="{{ get_objects.csv.url }}" class="btn btn-primary btn-sm" target="_blank">Download CSV</a>
+                </td>
+                <td>
+                    <form method="post" action="{% url 'delete_csv' get_objects.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    {% endif %}
 
     <br>
-    <a href="{% url 'home' %}">Back To Home</a>
-
-    <br>
-    <div style="overflow: auto; height: 400px;">
-    {{ html_table|safe }}
-    <!--{% autoescape off %}{{ html_table }}{% endautoescape %}-->
+    <div style="float: left;">
+        <form id="reset-form" style="display:inline;">
+        {% csrf_token %}
+        <a class="btn btn-primary btn-sm" href="{% url 'upload' %}" style="border: none; background-color: green;">Reset</a>
+        </form>
+        <form action="/process/" method="post" id="process-form" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" name="Process" value="Process" form="process-form" class="btn btn-primary btn-sm"
+                style="border: none; background-color: green;">Process</button>
+        </form>
+        <form action="/visualization/" method="post" id="plot-form" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" name="Plot" value="Plot" form="plot-form" class="btn btn-primary btn-sm"
+                style="border: none; background-color: green;">Plot</button>
+        </form>
     </div>
+    <!--<br><br>-->
+    <!--<div>-->
+    <!--{% autoescape off %}-->
+      <!--{{ plot_div }}-->
+      <!--{% endautoescape %}-->
+    <!--</div>-->
 
     </div>
 

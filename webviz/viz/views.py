@@ -23,9 +23,9 @@ def home(request):
     bar_chart = go.Bar(x=x, y=y)
     fig.add_trace(bar_chart)
     plot_div = plot(fig, output_type='div')
-    return render(request, "home.html", context={'plot_div': plot_div})
+    return render(request, "index.html", context={'plot_div': plot_div})
 
-    # return render(request, 'home.html', {'movies': movies}, context={'plot_div': plot_div})
+    # return render(request, 'index_ori.html', {'movies': movies}, context={'plot_div': plot_div})
 
 
 def movie_detail(request, viz_id):

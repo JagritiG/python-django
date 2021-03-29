@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+
+    <div class="container">
+    <h3>Upload File</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="myFile">
+        <button type="submit" style="border: none; background-color: green; color: white;">Upload file</button>
+    </form>
+    {% if url %}
+        <p>Uploaded File: <a href="{{ url }}">{{ url }}</a></p>
+    {% endif %}
+
+    <br>
+    <button style="border: none; background-color: green;">
+        <a href="{% url 'upload' %}" style="text-decoration: none; color: white;">Reset</a>
+    </button>
+
+    <br>
+    <a href="{% url 'home' %}">Back To Home</a>
+
+    <br>
+    <div style="overflow: auto; height: 400px;">
+    {{ html_table|safe }}
+    <!--{% autoescape off %}{{ html_table }}{% endautoescape %}-->
+    </div>
+
+    </div>
+
+{% endblock %}

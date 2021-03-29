@@ -13,7 +13,7 @@ def home(request):
 
     # using render()
     pets = Pet.objects.all()
-    return render(request, 'home.html', {'pets': pets, })
+    return render(request, 'index_ori.html', {'pets': pets, })
 
 
 def pet_detail(request, pet_id):

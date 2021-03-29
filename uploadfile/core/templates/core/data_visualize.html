@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% block 'body' %}
+
+<div class="container">
+    {% if plots %}
+    <H3><b>Visualize {{ plots }}</b></H3>
+    <form action="/chart/" method="post">
+        {% csrf_token %}
+        <label for="chart-select">Select Plot:</label>
+        <select name="chart-type" class="form-control" id="chart-select">
+            <option name="chart-type" value="Bar">Bar Plot</option>
+            <option name="chart-type" value="Scatter">Scatter Plot</option>
+            <option name="chart-type" value="Histogram">Histogram</option>
+        </select>
+        <br>
+        <p><b>Select Variables</b></p>
+        <label for="x-var">x:</label>
+        <select name="x-var" class="form-control" id="x-var">
+            <option disabled selected value> -- select variable -- </option>
+            {% for e in columns %}
+            <option value="{{ e }}">{{ e }}</option>
+            {% endfor %}
+        </select>
+        <label for="y-var">y:</label>
+        <select name="y-var" class="form-control" id="y-var">
+            <option disabled selected value> -- select variable -- </option>
+            {% for e in columns %}
+            <option value="{{ e }}">{{ e }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button class="btn btn-primary btn-sm" type="submit" style="border: none; background-color: green; color: white;">Plot</button>
+    </form>
+        <br>
+        <a href="{% url 'upload' %}">Back</a>
+    {% else %}
+        <a href="{% url 'upload' %}">Please upload file</a>
+    {% endif %}
+</div>
+
+{% endblock %}
